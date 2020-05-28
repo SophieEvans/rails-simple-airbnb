@@ -1,0 +1,66 @@
+
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <a class="navbar-brand" href="#">
+    <h2>Simple Airbnb</h2>
+</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a ><%= link_to 'Home', flats_path, class: "btn btn-primary m-2" %></a>
+      </li>
+      <li class="nav-item">
+        <a><%= link_to 'Add flat', new_flat_path, class: "btn btn-primary m-2" %></a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class='container mt-3'>
+    <div class="row">
+    <div class="col-12">
+      <h1>All our Flats</h1>
+    </div>
+  </div>
+
+<div class="row">
+  <div class="col">
+    <h2><%="Showing #{@flats.count} Flats" %></h2>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <% @flats.each do |flat| %>
+      <div class="col-4">
+        <div class="flat-card">
+          <div class="flat-card-image" style="background-image: url(<%= flat.image_url %>)">
+          <div class="flat-card-content">
+            <div class="flat-card-title">
+            <h4><%= flat.name %></h4>
+            </div>
+            <p><%= flat.address %></p>
+            <div class="flex">
+              <div class="flex ml-3">
+              <i class="fas fa-users mr-2"></i><span><%= flat.number_of_guests %></span>
+              </div>
+              <div class="flex ml-3">
+              <i class="fas fa-dollar-sign"></i><span><%= flat.price_per_night %></span>
+         </div>
+       </div>
+     </div>
+         <div class="flat-card-actions">
+           <a><%= link_to 'More info', flat_path(flat) %></a>
+           <a><%= link_to 'Edit', edit_flat_path(flat), class: "ml-3 text-warning" %></a>
+           <a><%= link_to 'Remove', flat_path(flat), method: 'DELETE', data: { confirm: "Are you sure?" }, class: "ml-3 text-danger" %></a>
+         </div>
+       </div>
+     </div>
+    <% end %>
+  </div>
+</div>
+
